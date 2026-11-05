@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Name=Vitorius Firewall
+GenericName=Corporate Firewall Manager
+Comment=Corporate-grade Windows-style firewall management with security profiles & live monitor
+Exec="/home/Vitorius/Desktop/Vitorius Firewall/run.sh"
+Path=/home/Vitorius/Desktop/Vitorius Firewall
+Icon=com.vitorius.firewall
+Terminal=false
+Type=Application
+Categories=System;Security;Settings;Network;
+StartupNotify=true
+StartupWMClass=com.vitorius.firewall
+Keywords=firewall;security;network;bazzite;fedora;rules;ports;monitor;corporate;
+X-KDE-SubstituteUID=false

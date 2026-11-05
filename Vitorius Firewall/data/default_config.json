@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "app_name": "Vitorius Firewall",
+  "profiles": {
+    "Home": {
+      "description": "Standard protection for trusted home networks. Allows common services.",
+      "default_zone": "home",
+      "tier": "standard",
+      "icon": "user-home-symbolic",
+      "allowed_services": ["dhcpv6-client", "mdns", "samba-client", "ssh"],
+      "blocked_ports": [],
+      "allowed_ports": [],
+      "logging": "minimal",
+      "icmp_block_inversion": false,
+      "masquerade": false
+    },
+    "Public": {
+      "description": "Enhanced protection for untrusted public networks (cafes, airports).",
+      "default_zone": "public",
+      "tier": "standard",
+      "icon": "network-wireless-symbolic",
+      "allowed_services": ["dhcpv6-client"],
+      "blocked_ports": [],
+      "allowed_ports": [],
+      "logging": "standard",
+      "icmp_block_inversion": false,
+      "masquerade": false
+    },
+    "Corporate": {
+      "description": "Enterprise-grade security. Strict rules, full logging, IDS alerts.",
+      "default_zone": "work",
+      "tier": "premium",
+      "icon": "network-server-symbolic",
+      "allowed_services": ["dhcpv6-client", "dns", "https"],
+      "blocked_ports": [],
+      "allowed_ports": [
+        {"port": "443", "protocol": "tcp"},
+        {"port": "8443", "protocol": "tcp"}
+      ],
+      "logging": "full",
+      "icmp_block_inversion": true,
+      "masquerade": false,
+      "rate_limit": true,
+      "ids_enabled": true,
+      "geo_blocking": true,
+      "blocked_countries": ["CN", "RU", "KP", "IR"],
+      "compliance": "SOC2"
+    },
+    "Gaming": {
+      "description": "Optimized for gaming. Allows game ports while maintaining security.",
+      "default_zone": "home",
+      "tier": "standard",
+      "icon": "input-gaming-symbolic",
+      "allowed_services": ["dhcpv6-client", "mdns"],
+      "blocked_ports": [],
+      "allowed_ports": [
+        {"port": "27015-27030", "protocol": "tcp"},
+        {"port": "27015-27030", "protocol": "udp"},
+        {"port": "3478-3480", "protocol": "udp"},
+        {"port": "27000-27100", "protocol": "udp"},
+        {"port": "4380", "protocol": "udp"}
+      ],
+      "logging": "minimal",
+      "icmp_block_inversion": false,
+      "masquerade": false
+    },
+    "Maximum Security": {
+      "description": "Lockdown mode. Only explicitly allowed traffic passes. Full audit logging.",
+      "default_zone": "drop",
+      "tier": "premium",
+      "icon": "security-high-symbolic",
+      "allowed_services": [],
+      "blocked_ports": [],
+      "allowed_ports": [
+        {"port": "443", "protocol": "tcp"},
+        {"port": "53", "protocol": "udp"}
+      ],
+      "logging": "full",
+      "icmp_block_inversion": true,
+      "masquerade": false,
+      "rate_limit": true,
+      "ids_enabled": true,
+      "geo_blocking": true,
+      "blocked_countries": ["CN", "RU", "KP", "IR", "SY", "CU"],
+      "compliance": "HIPAA"
+    }
+  },
+  "settings": {
+    "start_minimized": false,
+    "auto_start": false,
+    "notification_level": "important",
+    "log_retention_days": 90,
+    "monitor_refresh_ms": 2000,
+    "theme": "system",
+    "panic_mode_confirm": true,
+    "backup_on_profile_change": true
+  }
+}
